@@ -1,0 +1,22 @@
+---
+// Compact safety reminder used across pages.
+---
+<div class="safety-banner">
+  <div class="container safety-inner">
+    <span class="safety-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.1 8 11 4.6-1.9 8-6 8-11V5l-8-3zm0 6a2 2 0 0 1 2 2c0 .9-.6 1.4-1 1.8-.4.4-.5.6-.5 1.2h-1c0-1 .3-1.5.8-2 .3-.3.7-.6.7-1a1 1 0 0 0-2 0h-1a2 2 0 0 1 2-2zm-.5 6h1v1h-1z"/></svg>
+    </span>
+    <p class="safety-text">
+      <strong>Phones down, speeds down, move over.</strong> Wear a helmet, bring water, and look out for one another.
+      It's the law in Nebraska — and it keeps us all rolling.
+      <a href="/safety/">Ride safe →</a>
+    </p>
+  </div>
+</div>
+<style>
+  .safety-banner { background: var(--gold); color: #3b2708; }
+  .safety-inner { display: flex; align-items: center; gap: .8rem; padding: .8rem 1.25rem; }
+  .safety-icon { flex: none; color: #7a4e0a; }
+  .safety-text { margin: 0; font-size: .95rem; }
+  .safety-text a { color: #7a3a0a; font-weight: 700; white-space: nowrap; }
+</style>

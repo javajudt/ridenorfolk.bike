@@ -1,0 +1,27 @@
+---
+// Summary card for a ride, linking to its section on the Rides page.
+interface Props { ride: any; }
+const { ride } = Astro.props;
+const pillClass = `pill pill-${ride.color}`;
+---
+<a href={`/rides/#${ride.slug}`} class="card card-link ride-card">
+  <p class={pillClass}>{ride.kicker}</p>
+  <h3 class="ride-name">{ride.name}</h3>
+  <p class="ride-summary muted">{ride.summary}</p>
+  <dl class="ride-facts">
+    <div><dt>When</dt><dd>{ride.cadence}</dd></div>
+    <div><dt>Distance</dt><dd>{ride.distance}</dd></div>
+    <div><dt>Start</dt><dd>{ride.start}</dd></div>
+  </dl>
+  <span class="ride-more">Ride details →</span>
+</a>
+<style>
+  .ride-card { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: var(--text); }
+  .ride-name { margin: .6rem 0 .4rem; }
+  .ride-summary { flex: 0 0 auto; font-size: .95rem; }
+  .ride-facts { margin: .6rem 0 1rem; display: grid; gap: .45rem; }
+  .ride-facts > div { display: grid; grid-template-columns: 5rem 1fr; gap: .5rem; }
+  .ride-facts dt { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: .74rem; letter-spacing: .04em; color: var(--text-soft); }
+  .ride-facts dd { margin: 0; font-size: .92rem; }
+  .ride-more { margin-top: auto; font-family: var(--font-display); font-weight: 700; color: var(--sunset); }
+</style>

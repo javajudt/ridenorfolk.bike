@@ -1,0 +1,21 @@
+---
+import { site } from '../data/site.js';
+---
+<div class="strava card">
+  <div class="strava-mark" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="34" height="34"><path fill="#fff" d="M15.4 20.6 12.9 15.7 10.4 20.6H7.2l5.7-11.1 5.7 11.1zM10.9 3.4 4.9 15.1H8L10.9 9.4 13.8 15.1h3.1z"/></svg>
+  </div>
+  <div>
+    <h3 class="mb-0">We run on Strava</h3>
+    <p class="muted mb-0">Most Norfolk-area riders are on Strava — it's how the group keeps in touch, tracks segments, and shares routes. New to the group? That's the fastest way to plug in.</p>
+    <a href={site.stravaClubUrl} class="btn btn-outline strava-btn" target="_blank" rel="noopener">Find our club on Strava →</a>
+  </div>
+</div>
+<style>
+  .strava { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .strava-mark {
+    flex: none; width: 54px; height: 54px; border-radius: 12px;
+    background: #FC4C02; display: grid; place-items: center;
+  }
+  .strava-btn { margin-top: 1rem; }
+</style>

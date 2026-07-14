@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import StravaCTA from '../components/StravaCTA.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+---
+<Base title="About" description="Who we are: a friendly, all-paces group of cyclists in Norfolk, Nebraska.">
+  <section class="page-hero">
+    <div class="container-narrow">
+      <p class="eyebrow">Our story</p>
+      <h1>A bunch of neighbors who like to ride</h1>
+      <p class="lead">
+        Ride Norfolk is an unstructured, no-drop group of cyclists in Norfolk, Nebraska. Some of us are
+        chasing Strava segments and summer races; some of us just want a relaxed loop of town and a burger
+        afterward. Both belong here.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow prose">
+      <p>
+        What started as a few friends meeting downtown on Tuesday evenings has grown into a genuine community —
+        some weeks 30-plus riders roll out together. We ride a 14-mile loop of Norfolk every Tuesday in season,
+        head out on the Cowboy Trail under the full moon once a month, and throw together weekend breakfast and
+        gravel rides whenever the weather and the group line up.
+      </p>
+      <p>
+        There's no membership and no dues. The only things we ask: wear a helmet, bring water, look out for one
+        another, and leave room for the next rider to feel welcome. Weather-permitting, always — you decide for
+        yourself whether a ride is right for you on any given day.
+      </p>
+
+      <h2>What we believe</h2>
+      <div class="values">
+        <div class="value">
+          <span class="value-icon">🤝</span>
+          <div><strong>No drop, all paces.</strong> Two rollout times most rides, and someone always hangs back. New riders start with the easy group and are never left behind.</div>
+        </div>
+        <div class="value">
+          <span class="value-icon">🛡️</span>
+          <div><strong>Safety first, always.</strong> Helmets, lights, water, and eyes up. We share the road respectfully and keep each other accountable.</div>
+        </div>
+        <div class="value">
+          <span class="value-icon">🌽</span>
+          <div><strong>Proudly Norfolk.</strong> We love this town and its trails — the Cowboy Trail, downtown, and the connections being built between our parks.</div>
+        </div>
+        <div class="value">
+          <span class="value-icon">🍔</span>
+          <div><strong>The ride is the excuse.</strong> The real point is the people. There's almost always food and a cold drink at the end.</div>
+        </div>
+      </div>
+
+      <h2>How to jump in</h2>
+      <p>
+        The easiest way is to just show up to a Tuesday <a href="/rides/#chipotle">Chipotle Ride</a> — roll out at
+        5:00 or 5:30 from Divots Downtown. Want to stay in the loop between rides? <a href="#newsletter">Join the
+        newsletter</a> and find us on Strava, where most of the group keeps in touch.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-sand">
+    <div class="container">
+      <StravaCTA />
+    </div>
+  </section>
+
+  <NewsletterSignup />
+</Base>
+
+<style>
+  .page-hero { padding: 3.5rem 0 1rem; }
+  .prose p { font-size: 1.08rem; }
+  .prose h2 { margin-top: 2.2rem; }
+  .values { display: grid; gap: 1.2rem; margin: 1.2rem 0; }
+  @media (min-width: 640px) { .values { grid-template-columns: 1fr 1fr; } }
+  .value { display: flex; gap: .9rem; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem; }
+  .value-icon { font-size: 1.6rem; flex: none; }
+  .value strong { color: var(--trail); }
+</style>

@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects
+# Add redirects here as the site grows, e.g.:
+# /old-path  /new-path  301

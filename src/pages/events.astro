@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import NewsletterSignup from '../components/NewsletterSignup.astro';
+import { upcomingEvents, parseDate } from '../data/events.js';
+const events = upcomingEvents();
+// Group by "Month YYYY"
+const groups = {};
+for (const e of events) {
+  const key = parseDate(e.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  (groups[key] ||= []).push(e);
+}
+const monthKeys = Object.keys(groups);
+---
+<Base title="Events" description="Upcoming group rides, full-moon rides, and cycling events in and around Norfolk, Nebraska.">
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">On the calendar</p>
+      <h1>Events & Rides</h1>
+      <p class="lead">Weekly Chipotle Rides, monthly full-moon rides, and the races and gatherings we're heading to this season. Weather-permitting, as always — you decide for yourself.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {monthKeys.length === 0 && (
+        <p class="muted">No upcoming events posted right now. Check back soon or join the newsletter below.</p>
+      )}
+      {monthKeys.map((month) => (
+        <div class="month-block">
+          <h2 class="month-title">{month}</h2>
+          <ul class="event-list">
+            {groups[month].map((e) => (
+              <li class={`event-row card event-${e.color}`}>
+                <div class="event-date">
+                  <span class="event-dow">{parseDate(e.date).toLocaleDateString('en-US', { weekday: 'short' })}</span>
+                  <span class="event-day">{parseDate(e.date).getDate()}</span>
+                </div>
+                <div class="event-main">
+                  <span class={`pill pill-${e.color}`}>{e.type}</span>
+                  <h3 class="event-title">{e.title}</h3>
+                  <p class="event-desc muted mb-0">{e.description}</p>
+                  <p class="event-meta">🕒 {e.time} &nbsp;·&nbsp; 📍 {e.location}</p>
+                </div>
+                {e.register && (
+                  <div class="event-cta">
+                    <a href={e.register} class="btn btn-primary" target="_blank" rel="noopener">Register / RSVP</a>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <p class="calendar-note muted">
+        Riding events fill up the summer — regional gravel races, charity rides, and road events. We add them here as they're confirmed.
+        Racing or riding something and want it listed? <a href="/contact/">Let us know</a>.
+      </p>
+    </div>
+  </section>
+
+  <NewsletterSignup />
+</Base>
+
+<style>
+  .page-hero { padding: 3.5rem 0 1rem; }
+  .month-block { margin-bottom: 2.5rem; }
+  .month-title { font-size: 1.4rem; color: var(--trail); border-bottom: 2px solid var(--border); padding-bottom: .4rem; margin-bottom: 1.2rem; }
+  .event-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+  .event-row { display: flex; gap: 1.3rem; align-items: flex-start; border-left: 5px solid var(--sunset); }
+  .event-trail { border-left-color: var(--trail); }
+  .event-sky { border-left-color: var(--sky); }
+  .event-sunset { border-left-color: var(--sunset); }
+  .event-date {
+    flex: none; width: 3.6rem; text-align: center; display: flex; flex-direction: column;
+    background: var(--sand); border-radius: 10px; padding: .5rem 0;
+  }
+  .event-dow { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: .72rem; letter-spacing: .05em; color: var(--text-soft); }
+  .event-day { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; color: var(--asphalt); line-height: 1; }
+  .event-main { flex: 1 1 auto; }
+  .event-title { margin: .5rem 0 .3rem; font-size: 1.25rem; }
+  .event-desc { font-size: .95rem; }
+  .event-meta { font-size: .88rem; color: var(--text-soft); margin: .6rem 0 0; }
+  .event-cta { flex: none; align-self: center; }
+  .calendar-note { margin-top: 2rem; font-size: .95rem; }
+  @media (max-width: 600px) {
+    .event-row { flex-wrap: wrap; }
+    .event-cta { width: 100%; }
+    .event-cta .btn { width: 100%; justify-content: center; }
+  }
+</style>

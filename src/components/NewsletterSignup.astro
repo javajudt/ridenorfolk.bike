@@ -1,0 +1,74 @@
+---
+import { site } from '../data/site.js';
+const hasKit = Boolean(site.kitFormAction);
+---
+<section id="newsletter" class="news-band">
+  <div class="container-narrow text-center">
+    <p class="eyebrow" style="color: var(--gold)">The Weekly Newsletter</p>
+    <h2>Never miss a Tuesday rollout</h2>
+    <p class="news-lead">
+      Every week in season we send ride details, weather calls, full-moon dates, safety notes,
+      and shout-outs to new riders — the same rundown the group has always relied on.
+    </p>
+
+    <form
+      class="news-form"
+      method="post"
+      action={hasKit ? site.kitFormAction : undefined}
+      data-kit={hasKit ? 'true' : 'false'}
+    >
+      <label class="sr-only" for="email_address">Email address</label>
+      <input
+        id="email_address"
+        type="email"
+        name="email_address"
+        placeholder="you@example.com"
+        required
+      />
+      <button type="submit" class="btn btn-primary">Sign me up</button>
+    </form>
+    <p class="news-fine">
+      {hasKit
+        ? 'Free. We send about one email a week in season. Unsubscribe anytime.'
+        : 'Newsletter signup connects to Kit once configured. In the meantime, email us and we’ll add you.'}
+    </p>
+    {!hasKit && (
+      <p><a class="btn btn-outline" href={`mailto:${site.email}?subject=Add%20me%20to%20the%20Ride%20Norfolk%20newsletter`}>Email to join</a></p>
+    )}
+  </div>
+</section>
+<style>
+  .news-band { background: var(--trail); color: #EFEADD; padding: 4.5rem 0; }
+  .news-band h2 { color: #fff; }
+  .news-lead { color: #D3DBCE; font-size: 1.1rem; max-width: 52ch; margin: 0 auto 1.8rem; }
+  .news-form { display: flex; gap: .6rem; max-width: 480px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
+  .news-form input {
+    flex: 1 1 240px; min-width: 0; padding: .8rem 1rem; font-size: 1rem; font-family: var(--font-body);
+    border: 2px solid transparent; border-radius: var(--radius-sm); background: #fff; color: var(--asphalt);
+  }
+  .news-form input:focus { outline: none; border-color: var(--gold); }
+  .news-fine { color: #B7C2B2; font-size: .85rem; margin-top: 1rem; }
+</style>
+<script>
+  // Progressive enhancement: if a Kit form action is configured, submit via fetch
+  // so the page shows a thank-you without a full redirect. Falls back to normal
+  // POST if JS is disabled.
+  const form = document.querySelector('.news-form');
+  if (form && form.getAttribute('data-kit') === 'true') {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button');
+      const original = btn.textContent;
+      btn.textContent = 'Signing you up…';
+      btn.disabled = true;
+      try {
+        await fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' });
+        form.innerHTML = '<p style="color:#fff;font-weight:600;margin:0">You’re on the list — see you Tuesday! 🚲</p>';
+      } catch (err) {
+        btn.textContent = original;
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or email us.');
+      }
+    });
+  }
+</script>

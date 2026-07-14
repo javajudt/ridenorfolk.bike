@@ -1,0 +1,19 @@
+{
+  "name": "ride-norfolk",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ride Norfolk — the go-to source for all things bicycling in Norfolk, Nebraska.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource/barlow-semi-condensed": "^5.1.0",
+    "@fontsource/inter": "^5.1.0",
+    "astro": "^7.0.9"
+  }
+}

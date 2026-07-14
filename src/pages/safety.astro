@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+import ShopCard from '../components/ShopCard.astro';
+---
+<Base title="Safety" description="Ride smart in Norfolk: helmets, lights, hydration, and Nebraska's vulnerable road user law.">
+  <section class="page-hero safety-hero">
+    <div class="container">
+      <p class="eyebrow" style="color:#7a4e0a">Ride smart</p>
+      <h1>Safety on every ride</h1>
+      <p class="lead">We're an unstructured group and every rider is responsible for their own safety — so let's make good decisions together. Here's what we ask of everyone who rolls with us.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3">
+        <div class="card safe-card">
+          <h3>🪖 Every ride</h3>
+          <ul>
+            <li>Wear a helmet.</li>
+            <li>Bring a water bottle — pre-hydrate on hot days.</li>
+            <li>Ride a bike that's in good working order.</li>
+            <li>Keep right, and watch for slowing or turning riders ahead.</li>
+            <li>Look out for one another; regroup at safe stopping points.</li>
+          </ul>
+        </div>
+        <div class="card safe-card">
+          <h3>🌙 Full-moon & night rides</h3>
+          <ul>
+            <li>Charged headlight <em>and</em> taillight — required.</li>
+            <li>Spare inner tube, a bike lock, and water.</li>
+            <li>Fresh sealant in tires/tubes (refresh every 3–6 months).</li>
+            <li>Tires 38mm (1.5") or wider for the Cowboy Trail.</li>
+            <li>The trail can be soft, dark, and have animal holes — ride within your limits.</li>
+          </ul>
+        </div>
+        <div class="card safe-card">
+          <h3>🥵 Hot-weather riding</h3>
+          <ul>
+            <li>Hydrate all day, not just on the bike — water and electrolytes.</li>
+            <li>Watch for dizziness, headache, cramps, nausea, or confusion.</li>
+            <li>Stop in the shade to cool down — hydration alone isn't enough.</li>
+            <li>Look out for each other and act fast if someone overheats.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-trail">
+    <div class="container-narrow text-center">
+      <p class="eyebrow" style="color:var(--gold)">Nebraska law</p>
+      <h2>Phones down. Speeds down. Move over.</h2>
+      <p class="lead" style="color:#D3DBCE">
+        Nebraska law protects vulnerable road users like cyclists. Motorists must slow down and move over
+        to pass. If you're behind the wheel, be patient — a cyclist has just as much right to the road as you do.
+      </p>
+      <a href="https://governor.nebraska.gov/governors-challenge-phones-down-speeds-down-save-lives" class="btn btn-ghost-light" target="_blank" rel="noopener">Read the challenge →</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid grid-2">
+      <div>
+        <h2>Share the road, both ways</h2>
+        <p>
+          Most close calls come down to a moment of inattention — from a driver or a rider. Keep your head on a
+          swivel, make eye contact at intersections, and don't leave a motorist just enough room to squeeze by.
+          Better they wait a few seconds for a safe pass.
+        </p>
+        <p>
+          When we ride as a group, we keep to the right as safely as possible, signal our moves, and call out
+          hazards down the line. Predictable riders are safe riders.
+        </p>
+        <div class="card disclaimer-card">
+          <strong>The fine print:</strong> Ride Norfolk is an unstructured group of individual cyclists who gather
+          for group rides. By taking part, each rider recognizes they are solely and individually responsible for
+          their own health and safety.
+        </div>
+      </div>
+      <div>
+        <ShopCard />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero { padding: 3.5rem 0 1rem; }
+  .safety-hero { background: linear-gradient(180deg, #FDEBD3, var(--cream)); }
+  .safe-card ul { margin: .4rem 0 0; padding-left: 1.1rem; }
+  .safe-card li { margin-bottom: .5rem; }
+  .safe-card h3 { color: var(--trail); }
+  .disclaimer-card { margin-top: 1.5rem; background: var(--sand); border: none; font-size: .92rem; color: var(--text-soft); }
+</style>

@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+import SafetyBanner from '../components/SafetyBanner.astro';
+import StravaCTA from '../components/StravaCTA.astro';
+import { rides } from '../data/rides.js';
+---
+<Base title="Rides" description="The Chipotle Ride, monthly Full Moon rides on the Cowboy Trail, and impromptu weekend rides in Norfolk, Nebraska.">
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Ways to ride</p>
+      <h1>The Rides</h1>
+      <p class="lead">Here's how we roll all season. Every ride is no-drop and open to everyone — pick the pace that fits your day.</p>
+      <div class="jump">
+        {rides.map((r) => <a href={`#${r.slug}`} class="jump-link">{r.name}</a>)}
+      </div>
+    </div>
+  </section>
+
+  <SafetyBanner />
+
+  {rides.map((ride, i) => (
+    <section id={ride.slug} class:list={['section', 'ride-section', { 'section-sand': i % 2 === 1 }]}>
+      <div class="container ride-detail">
+        <div class="ride-head">
+          <p class={`pill pill-${ride.color}`}>{ride.kicker}</p>
+          <h2>{ride.name}</h2>
+          <p class="lead">{ride.summary}</p>
+        </div>
+
+        <div class="ride-body grid grid-2">
+          <div>
+            <dl class="facts">
+              <div><dt>When</dt><dd>{ride.cadence}</dd></div>
+              <div><dt>Distance</dt><dd>{ride.distance}</dd></div>
+              <div><dt>Start</dt><dd>{ride.start}</dd></div>
+            </dl>
+
+            {ride.groups && (
+              <div class="groups">
+                <h3>Pick your pace</h3>
+                {ride.groups.map((g) => (
+                  <div class="group-row">
+                    <span class="group-time">{g.time}</span>
+                    <div>
+                      <strong>{g.label} · <span class="pace">{g.pace}</span></strong>
+                      <p class="muted mb-0">{g.note}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {ride.schedule && (
+              <div class="groups">
+                <h3>How the night runs</h3>
+                {ride.schedule.map((s) => (
+                  <div class="group-row">
+                    <span class="group-time">{s.time}</span>
+                    <div><p class="mb-0">{s.label}</p></div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div>
+            <div class="card bring-card">
+              <h3 class="mt-0">What to bring</h3>
+              <ul class="bring-list">
+                {ride.bring.map((b) => <li>{b}</li>)}
+              </ul>
+              <p class="after-note">{ride.after}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section">
+    <div class="container">
+      <StravaCTA />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-hero { padding: 3.5rem 0 2rem; }
+  .jump { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .jump-link {
+    font-family: var(--font-display); font-weight: 700; text-decoration: none;
+    background: var(--white); border: 1px solid var(--border); color: var(--asphalt);
+    padding: .4rem .9rem; border-radius: 999px; font-size: .95rem;
+  }
+  .jump-link:hover { border-color: var(--sunset); color: var(--sunset); }
+
+  .ride-section { scroll-margin-top: 80px; }
+  .ride-head { max-width: 62ch; margin-bottom: 2rem; }
+  .ride-body { align-items: start; }
+
+  .facts { display: grid; gap: .6rem; margin: 0 0 1.8rem; }
+  .facts > div { display: grid; grid-template-columns: 6rem 1fr; gap: .6rem; }
+  .facts dt { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: .78rem; letter-spacing: .04em; color: var(--text-soft); }
+  .facts dd { margin: 0; }
+
+  .groups { margin-bottom: 1.5rem; }
+  .groups h3 { margin-bottom: .8rem; }
+  .group-row { display: flex; gap: 1rem; padding: .7rem 0; border-top: 1px solid var(--border); }
+  .group-row:first-of-type { border-top: none; }
+  .group-time { font-family: var(--font-display); font-weight: 800; color: var(--sunset); flex: none; width: 4.8rem; }
+  .pace { color: var(--sky-dark); }
+
+  .bring-card { position: sticky; top: 84px; }
+  .bring-list { margin: 0 0 1.2rem; padding-left: 1.1rem; }
+  .bring-list li { margin-bottom: .4rem; }
+  .after-note { color: var(--text-soft); font-size: .95rem; margin: 0; padding-top: 1rem; border-top: 1px solid var(--border); }
+</style>

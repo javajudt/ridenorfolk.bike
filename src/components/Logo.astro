@@ -1,0 +1,33 @@
+---
+// Ride Norfolk wordmark + mark.
+// Props: variant ('dark' text for light bg | 'light' text for dark bg), size
+interface Props { variant?: 'dark' | 'light'; height?: number; }
+const { variant = 'dark', height = 34 } = Astro.props;
+const textColor = variant === 'light' ? '#FFFFFF' : '#1C1E22';
+---
+<span class="rn-logo" style={`--h:${height}px`} aria-label="Ride Norfolk">
+  <!-- Mark: rising sun over a looping trail forming a wheel -->
+  <svg class="rn-mark" viewBox="0 0 48 48" width={height} height={height} role="img" aria-hidden="true">
+    <circle cx="24" cy="24" r="22" fill="#1F5C3D"/>
+    <!-- sun -->
+    <circle cx="24" cy="20" r="8" fill="#F4A93C"/>
+    <path d="M24 20 m-13 0 a13 13 0 0 1 26 0" fill="none" stroke="#E8562D" stroke-width="0" />
+    <!-- horizon / trail loop -->
+    <path d="M6 30 H42" stroke="#FBF6EC" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- route line -->
+    <path d="M11 37 C 18 31, 30 31, 24 26 C 19 22, 33 22, 37 30"
+          fill="none" stroke="#E8562D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="11" cy="37" r="3.1" fill="#FBF6EC" stroke="#E8562D" stroke-width="2.2"/>
+    <circle cx="37" cy="30" r="3.1" fill="#FBF6EC" stroke="#E8562D" stroke-width="2.2"/>
+  </svg>
+  <span class="rn-word" style={`color:${textColor}`}>
+    <span class="rn-ride">RIDE</span><span class="rn-nor">NORFOLK</span>
+  </span>
+</span>
+<style>
+  .rn-logo { display: inline-flex; align-items: center; gap: .55rem; line-height: 1; }
+  .rn-mark { flex: none; border-radius: 50%; }
+  .rn-word { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 800;
+             font-size: calc(var(--h) * 0.72); letter-spacing: -0.01em; white-space: nowrap; }
+  .rn-nor { margin-left: .18em; color: var(--sunset) !important; }
+</style>
