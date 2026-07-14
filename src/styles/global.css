@@ -1,0 +1,170 @@
+/* ==========================================================================
+   Ride Norfolk — Global styles & design tokens
+   Warm + athletic blend. See BRAND_GUIDE.md
+   ========================================================================== */
+
+/* Self-hosted fonts (Cloudflare-friendly) */
+@import '@fontsource/barlow-semi-condensed/600.css';
+@import '@fontsource/barlow-semi-condensed/700.css';
+@import '@fontsource/barlow-semi-condensed/800.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+
+:root {
+  /* Brand palette */
+  --sunset: #E8562D;
+  --sunset-dark: #C6431E;
+  --gold: #F4A93C;
+  --trail: #1F5C3D;
+  --trail-dark: #164229;
+  --sky: #1F7A9C;
+  --sky-dark: #17627E;
+  --asphalt: #1C1E22;
+  --cream: #FBF6EC;
+  --sand: #EFE7D6;
+  --sand-line: #E2D8C3;
+  --white: #FFFFFF;
+
+  /* Semantic */
+  --bg: var(--cream);
+  --surface: var(--white);
+  --text: var(--asphalt);
+  --text-soft: #55524B;
+  --border: var(--sand-line);
+  --link: var(--sky-dark);
+
+  /* Type */
+  --font-display: 'Barlow Semi Condensed', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --maxw: 1120px;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgba(28,30,34,.06), 0 6px 20px rgba(28,30,34,.06);
+  --shadow-lift: 0 6px 14px rgba(28,30,34,.10), 0 14px 40px rgba(28,30,34,.10);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.08;
+  margin: 0 0 .5em;
+  letter-spacing: -0.01em;
+}
+h1 { font-size: clamp(2.25rem, 5vw, 3.25rem); font-weight: 800; }
+h2 { font-size: clamp(1.7rem, 3.5vw, 2.25rem); font-weight: 700; }
+h3 { font-size: 1.4rem; font-weight: 700; }
+
+p { margin: 0 0 1rem; }
+a { color: var(--link); text-decoration-thickness: 1.5px; text-underline-offset: 2px; }
+a:hover { color: var(--sunset); }
+
+.eyebrow {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-weight: 700;
+  font-size: .8rem;
+  color: var(--sunset);
+  margin: 0 0 .5rem;
+}
+
+/* Layout helpers */
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+.container-narrow { max-width: 760px; margin: 0 auto; padding: 0 1.25rem; }
+.section { padding: 4.5rem 0; }
+.section-sand { background: var(--sand); }
+.section-trail { background: var(--trail); color: #F2EEE3; }
+.section-trail h1, .section-trail h2, .section-trail h3 { color: #fff; }
+.section-tight { padding: 3rem 0; }
+
+.grid { display: grid; gap: 1.5rem; }
+@media (min-width: 720px) {
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 1.02rem;
+  letter-spacing: .01em;
+  padding: .72rem 1.35rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--sunset); color: #fff; }
+.btn-primary:hover { background: var(--sunset-dark); color: #fff; }
+.btn-trail { background: var(--trail); color: #fff; }
+.btn-trail:hover { background: var(--trail-dark); color: #fff; }
+.btn-outline { background: transparent; color: var(--sky-dark); border-color: var(--sky-dark); }
+.btn-outline:hover { background: var(--sky-dark); color: #fff; }
+.btn-ghost-light { background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.5); }
+.btn-ghost-light:hover { background: #fff; color: var(--trail); }
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.6rem;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.card-link:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+
+/* Pills / tags */
+.pill {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: .78rem; letter-spacing: .04em; text-transform: uppercase;
+  padding: .28rem .6rem; border-radius: 999px;
+}
+.pill-sunset { background: rgba(232,86,45,.12); color: var(--sunset-dark); }
+.pill-trail { background: rgba(31,92,61,.12); color: var(--trail); }
+.pill-sky { background: rgba(31,122,156,.12); color: var(--sky-dark); }
+.pill-gold { background: rgba(244,169,60,.18); color: #9a6410; }
+
+/* Stat */
+.stat-num { font-family: var(--font-display); font-weight: 800; font-size: 2.6rem; color: var(--sunset); line-height: 1; }
+
+/* Utility */
+.text-center { text-align: center; }
+.lead { font-size: 1.2rem; color: var(--text-soft); }
+.muted { color: var(--text-soft); }
+.mt-0 { margin-top: 0; } .mb-0 { margin-bottom: 0; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.stack > * + * { margin-top: 1rem; }
+
+/* Focus visibility */
+:focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
